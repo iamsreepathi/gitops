@@ -10,5 +10,5 @@ spec:
     namespace: default
   source:
     repoURL: https://github.com/iamsreepathi/gitops
-    path: gitops/apps/postgres
+    path: apps/postgres
     targetRevision: HEAD
