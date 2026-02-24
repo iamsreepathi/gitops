@@ -7,7 +7,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: laravel
+    namespace: default
   source:
     repoURL: https://github.com/iamsreepathi/gitops
     path: gitops/apps/postgres
