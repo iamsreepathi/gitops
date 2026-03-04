@@ -4,3 +4,9 @@ kind: Kustomization
 resources:
   - secret.yaml
   - config-map.yaml
+  - nginx-config.yaml
+  - deployment.yaml
+  - service.yaml
+  - db-migration-job.yaml
+  - ingress.yaml
+  - pdb.yaml

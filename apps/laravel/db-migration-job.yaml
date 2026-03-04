@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+  name: laravel-migrate
+  namespace: default
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: ghcr.io/iamsreepathi/laravel:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: laravel-configmap
+            - secretRef:
+                name: laravel-secret
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              set -e
+              echo "Running migrations..."
+              php artisan migrate --force
+              echo "Migrations complete."
